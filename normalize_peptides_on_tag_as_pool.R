@@ -2,23 +2,8 @@
 ## Since tag 10 abundance can be 0, do nothing with that run.
 ## Reformat x, y and check data with a log plot.
 
-ynorm <- y
-xnorm <- x
-
-#tag <- 10
-
-# mkRow <- function(row) {
-#   r <- matrix(c(1:10), nrow=10)
-#   return(r)
-# }
-
 mkRow <- function(row) {
-  # Test of normalizing on tag
-  # base <- 10*(row-1)+1
-  # x9 <- x[base:(base+8),]
-  # if (identical(y[(base+9)], 0)) (y9 <- y[base:(base+8)]) else (y9 <- y[base:(base+8)]/y[(base+9)])
-  # r <- cbind(x9,y9)
-  
+
   # Normalizing on pool of tags, such that run_n -> run_n*mean_tag/tag_n
   base <- 50*(row-1)+1
   
@@ -58,15 +43,11 @@ mkRow <- function(row) {
   return(r)
 }
 
-# test <- mkRow(3)
-# print(test)
-
 mkFrameList <- function(nRow) {
   d <- sapply(seq_len(nRow),function(i) {
     ri <- mkRow(i)
     data.frame(t(ri))
   })
-  #print(d)
   do.call(rbind,d)
 }
 
@@ -86,4 +67,4 @@ tryCatch({
 
 
 ## check log transform function
-#nomadCheckLogTransform(y, x, rawTrim=0.9)
+nomadCheckLogTransform(y, x, rawTrim=0.9)

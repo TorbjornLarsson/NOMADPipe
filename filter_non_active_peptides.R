@@ -32,13 +32,11 @@ mkFrameList <- function(nRow) {
 }
 
 tryCatch({
-  n <- 73913
-  #n <- 10
+  
+  n <- 73913 # Number of peptides
+  
   filtDat <- mkFrameList(n)
-  
-  #colnames(filtDat) <- c("Protein", "Peptide", "Run", "iTRAQ", "Abundance")
   inPath <- cat(getwd(), "/", sep="")
-  
   write.table(filtDat, paste(inPath, "NonzeroAbundancePeptidesOnNOMADformat.txt", sep=""), sep="\t")
   
 }, warning = function(w) {
